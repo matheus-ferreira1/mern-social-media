@@ -9,6 +9,9 @@ import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
 
+import authRoutes from "./routes/auth.js";
+import { register } from "./controllers/auth.js";
+
 // configurations
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -26,7 +29,7 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 app.use(express.static(path.join(__dirname, "public")));
 
-// file storage
+// FILE STORAGE
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "public/assets");
@@ -37,7 +40,13 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-// mongodb
+// ROUTES WITH FILES
+app.post("/auth/register", upload.single("picture"), register);
+
+// ROUTES
+app.use("/auth", authRoutes);
+
+// MONGOOSE CONFIGURATION
 const PORT = process.env.PORT || 6001;
 
 mongoose
