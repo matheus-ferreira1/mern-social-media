@@ -1,6 +1,8 @@
 import User from "../models/User.js";
 
-// read
+// CRUD OPERATIONS
+
+// geting the user
 export const getUser = async (req, res) => {
   try {
     const { id } = req.params;
@@ -11,6 +13,7 @@ export const getUser = async (req, res) => {
   }
 };
 
+// getting user's friends
 export const getUserFriends = async (req, res) => {
   try {
     const { id } = req.params;
@@ -32,7 +35,7 @@ export const getUserFriends = async (req, res) => {
   }
 };
 
-// update
+// Updating the list of friends (adding or removing)
 export const addRemoveFriend = async (req, res) => {
   try {
     const { id, friendId } = req.params;
