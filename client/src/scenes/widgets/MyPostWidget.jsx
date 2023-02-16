@@ -1,22 +1,5 @@
-import {
-  EditOutlined,
-  DeleteOutlined,
-  AttachFileOutlined,
-  GifBoxOutlined,
-  ImageOutlined,
-  MicOutlined,
-  MoreHorizOutlined,
-} from "@mui/icons-material";
-import {
-  Box,
-  Divider,
-  Typography,
-  InputBase,
-  useTheme,
-  Button,
-  IconButton,
-  useMediaQuery,
-} from "@mui/material";
+import { EditOutlined, DeleteOutlined, AttachFileOutlined, GifBoxOutlined, ImageOutlined, MicOutlined, MoreHorizOutlined } from "@mui/icons-material"; //prettier-ignore
+import { Box, Divider, Typography, InputBase, useTheme, Button, IconButton, useMediaQuery } from "@mui/material"; //prettier-ignore
 import Dropzone from "react-dropzone";
 import FlexBetween from "../../components/FlexBetween";
 import UserImage from "../../components/UserImage";
@@ -60,6 +43,7 @@ const MyPostWidget = ({ picturePath }) => {
   return (
     <WidgetWrapper>
       <FlexBetween gap="1.5rem">
+        <UserImage image={picturePath} />
         <InputBase
           placeholder="What's on your mind..."
           onChange={(e) => setPost(e.target.value)}
@@ -120,11 +104,11 @@ const MyPostWidget = ({ picturePath }) => {
       <Divider sx={{ margin: "1.25rem 0" }} />
 
       <FlexBetween>
-        <FlexBetween gap="0.25rem">
+        <FlexBetween gap="0.25rem" onClick={() => setIsImage(!isImage)}>
           <ImageOutlined sx={{ color: mediumMain }} />
           <Typography
             color={mediumMain}
-            // sx={{ "&:hover": { cursor: "pointer", color: medium } }}
+            sx={{ "&:hover": { cursor: "pointer", color: medium } }}
           >
             Image
           </Typography>
