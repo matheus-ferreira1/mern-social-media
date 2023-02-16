@@ -37,17 +37,23 @@ const FriendListWidget = ({ userId }) => {
       >
         Friend List
       </Typography>
-      <Box display="flex" flexDirection="column" gap="1.5rem">
-        {friends.map((friend) => (
-          <Friend
-            key={friend._id}
-            friendId={friend._id}
-            name={`${friend.firstName} ${friend.lastName}`}
-            subtitle={friend.occupation}
-            userPicturePath={friend.picturePath}
-          />
-        ))}
-      </Box>
+      {friends.length > 0 ? (
+        <Box display="flex" flexDirection="column" gap="1.5rem">
+          {friends.map((friend) => (
+            <Friend
+              key={friend._id}
+              friendId={friend._id}
+              name={`${friend.firstName} ${friend.lastName}`}
+              subtitle={friend.occupation}
+              userPicturePath={friend.picturePath}
+            />
+          ))}
+        </Box>
+      ) : (
+        <Typography color={palette.neutral.dark} variant="h6" fontWeight="300">
+          No friends added
+        </Typography>
+      )}
     </WidgetWrapper>
   );
 };
